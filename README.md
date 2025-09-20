@@ -7,10 +7,16 @@ One-liner to set up a new project with Claude Code and essential MCPs anywhere.
 Run this anywhere to create a new Claude project:
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/Ruashots/newclaudeproject/main/setup-project.sh | bash
+curl -sSL https://raw.githubusercontent.com/Ruashots/newclaudeproject/main/setup-project.sh | bash -s 'your-project-name'
 ```
 
-The script will prompt you for a project name and set everything up automatically.
+Or download and run interactively:
+
+```bash
+curl -O https://raw.githubusercontent.com/Ruashots/newclaudeproject/main/setup-project.sh
+chmod +x setup-project.sh
+./setup-project.sh
+```
 
 ## What It Does
 
