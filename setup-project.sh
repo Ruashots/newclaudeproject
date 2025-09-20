@@ -4,16 +4,21 @@
 if [ $# -gt 0 ]; then
     project_name="$1"
 else
-    # Try to read from terminal if available
-    if [ -t 0 ]; then
-        echo "Enter project name: " >&2
-        read project_name
-    else
-        # Try to read from stdin (for piped input)
-        echo "Enter project name: " >&2
-        exec < /dev/tty
-        read project_name
+    # Check if we're being piped from curl
+    if [ ! -t 0 ]; then
+        echo "When running via curl, provide the project name as an argument:" >&2
+        echo "curl -sSL https://raw.githubusercontent.com/Ruashots/newclaudeproject/main/setup-project.sh | bash -s 'your-project-name'" >&2
+        echo "" >&2
+        echo "Or download and run locally:" >&2
+        echo "curl -O https://raw.githubusercontent.com/Ruashots/newclaudeproject/main/setup-project.sh" >&2
+        echo "chmod +x setup-project.sh" >&2
+        echo "./setup-project.sh" >&2
+        exit 1
     fi
+
+    # Interactive prompt
+    echo "Enter project name: " >&2
+    read project_name
 fi
 
 # Check if project name is provided
