@@ -1,8 +1,20 @@
 #!/bin/bash
 
-# Prompt for project name
-echo "Enter project name: " >&2
-read project_name
+# Check if project name is provided as argument
+if [ $# -gt 0 ]; then
+    project_name="$1"
+else
+    # Try to read from terminal if available
+    if [ -t 0 ]; then
+        echo "Enter project name: " >&2
+        read project_name
+    else
+        # Try to read from stdin (for piped input)
+        echo "Enter project name: " >&2
+        exec < /dev/tty
+        read project_name
+    fi
+fi
 
 # Check if project name is provided
 if [ -z "$project_name" ]; then
