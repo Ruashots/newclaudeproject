@@ -1,12 +1,8 @@
 #!/bin/bash
 
-# Prompt for project name (redirect from /dev/tty to handle piped execution)
+# Prompt for project name
 echo "Enter project name: " >&2
-if [ -t 0 ]; then
-    read project_name
-else
-    read project_name < /dev/tty
-fi
+read project_name
 
 # Check if project name is provided
 if [ -z "$project_name" ]; then
@@ -37,16 +33,12 @@ claude mcp add playwright npx @playwright/mcp@latest
 pnpm dlx shadcn@latest mcp init --client claude
 
 echo "MCPs installed successfully!"
-echo "Starting Claude with project setup instructions..."
-
-# Run Claude with initial instructions
-claude --dangerously-skip-permissions << 'EOF'
-Hi! I need you to help me set up a new project. Please follow these steps:
-
-1. First, create a new GitHub repository for this project
-2. Ask me for my main project idea so you can help me create a comprehensive PRD (Product Requirements Document)
-3. Push the PRD and any initial setup to GitHub
-4. Then ask me if you can start working on implementing the project
-
-Let's begin!
-EOF
+echo ""
+echo "Project setup complete! You can now:"
+echo "1. cd $project_name"
+echo "2. claude"
+echo ""
+echo "Claude will help you:"
+echo "- Create a GitHub repository"
+echo "- Develop a Product Requirements Document"
+echo "- Implement your project"
