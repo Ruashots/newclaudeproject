@@ -1,7 +1,12 @@
 #!/bin/bash
 
-# Prompt for project name
-read -p "Enter project name: " project_name
+# Prompt for project name (redirect from /dev/tty to handle piped execution)
+echo "Enter project name: " >&2
+if [ -t 0 ]; then
+    read project_name
+else
+    read project_name < /dev/tty
+fi
 
 # Check if project name is provided
 if [ -z "$project_name" ]; then

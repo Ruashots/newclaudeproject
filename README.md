@@ -10,6 +10,8 @@ Run this anywhere to create a new Claude project:
 curl -sSL https://raw.githubusercontent.com/Ruashots/newclaudeproject/main/setup-project.sh | bash
 ```
 
+The script will prompt you for a project name and set everything up automatically.
+
 ## What It Does
 
 Automatically sets up:
